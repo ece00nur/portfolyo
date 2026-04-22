@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ece Nur | Portfolyo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <nav class="baloncuk-menu">
+        <a href="#giris">Ana Sayfa</a>
+        <a href="#hakkimda">Hakkımda</a>
+        <a href="#projelerim">Projelerim</a>
+        <a href="#iletisim">İletişim</a>
+    </nav>
+
+    <div class="sosyal-medya">
+        <a href="https://www.linkedin.com/in/ece-nur-ari-907638343/" target="_blank"><i class="fab fa-linkedin"></i>
+            LinkedIn</a>
+        <a href="https://github.com/ece00nur" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+    </div>
+
+    <section id="giris">
+        <div class="giris-icerik">
+            <div class="giris-yazi sola-kaybol">
+                <h1>MERHABA,<br>BEN <span style="color: #ffcc00;">ECE NUR</span></h1>
+            </div>
+            <img src="img/img1.png" alt="Profil Fotoğrafı" class="profil-foto gizle">
+        </div>
+    </section>
+
+    <section id="hakkimda">
+        <div class="hakkimda-icerik">
+            <div class="hakkimda-yazi sola-kaybol">
+                <h2>HAKKIMDA</h2>
+                <p>Kahramanmaraş İstiklal Üniversitesi Yazılım Mühendisliği öğrencisiyim. Frontend ve Backend alanlarına
+                    ilgi duyuyorum. Kendimi bu alanlarda geliştirmeye çalışıyorum.</p>
+            </div>
+            <img src="img/img2.png" alt="Hakkımda" class="hakkimda-foto gizle">
+        </div>
+    </section>
+
+    <section id="projelerim">
+        <div class="projelerim-icerik">
+            <div class="projelerim-yazi sola-kaybol">
+                <h2>PROJELERİM</h2>
+                <p>Geliştirdiğim ilk kapsamlı projem:</p>
+                <p>
+                    Modern web standartlarına uygun olarak
+                    <a href="https://www.bemastreyler.com.tr/" target="_blank" class="proje-link">Bemas Treyler</a>
+                    firması için kullanıcı dostu bir web sitesi geliştirdim.
+                </p>
+                <p>Diğer küçük projelerime GitHub ve LinkedIn hesaplarımdan ulaşabilirsiniz.</p>
+            </div>
+            <img src="img/img3.png" alt="Projeler" class="projelerim-foto gizle">
+        </div>
+    </section>
+
+    <section id="iletisim">
+        <div class="iletisim-icerik">
+            <div class="iletisim-yazi sola-kaybol">
+                <h2>İLETİŞİM</h2>
+                <p>Kendimi geliştirebilmem adına öneri ve tekliflerinize açığım.</p>
+
+                <form action="https://formspree.io/f/mbdqpang" method="POST" class="iletisim-form">
+                    <div class="form-grup">
+                        <input type="text" name="name" placeholder="Adınız" required>
+                    </div>
+                    <div class="form-grup">
+                        <input type="email" name="_replyto" placeholder="E-posta Adresiniz" required>
+                    </div>
+                    <div class="form-grup">
+                        <textarea name="message" rows="5" placeholder="Mesajınız" required></textarea>
+                    </div>
+                    <button type="submit" class="gonder-btn">Gönder</button>
+                </form>
+            </div>
+            <img src="img/img4.png" alt="İletişim" class="iletisim-foto gizle">
+        </div>
+    </section>
+
+    <a href="#giris" id="dinamik-ok" class="yukari-ok">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        const okButonu = document.getElementById("dinamik-ok");
+
+
+        window.addEventListener("scroll", () => {
+            window.scrollY > 300 ? okButonu.classList.add("goster") : okButonu.classList.remove("goster");
+        });
+
+
+        okButonu.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+
+
+        const observerOptions = {
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const img = entry.target.querySelector('img');
+                const text = entry.target.querySelector('div[class*="-yazi"]');
+
+                if (entry.isIntersecting) {
+                    if (img) img.classList.remove("gizle");
+                    if (text) text.classList.remove("sola-kaybol");
+                } else {
+
+                    if (img) img.classList.add("gizle");
+                    if (text) text.classList.add("sola-kaybol");
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => observer.observe(section));
+    </script>
+</body>
+
+</html>
