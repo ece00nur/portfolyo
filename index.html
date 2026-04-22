@@ -66,7 +66,7 @@
                 <h2>İLETİŞİM</h2>
                 <p>Kendimi geliştirebilmem adına öneri ve tekliflerinize açığım.</p>
 
-                <form action="https://formspree.io/f/mbdqpang" method="POST" class="iletisim-form">
+                <form id="my-form" action="https://formspree.io/f/mbdqpang" method="POST" class="iletisim-form">
                     <div class="form-grup">
                         <input type="text" name="name" placeholder="Adınız" required>
                     </div>
@@ -76,7 +76,9 @@
                     <div class="form-grup">
                         <textarea name="message" rows="5" placeholder="Mesajınız" required></textarea>
                     </div>
-                    <button type="submit" class="gonder-btn">Gönder</button>
+                    <button id="submit-btn" type="submit" class="gonder-btn">Gönder</button>
+
+                    <p id="form-status" style="display:none; margin-top:15px; color:#ffcc00; font-weight:bold;"></p>
                 </form>
             </div>
             <img src="img/img4.png" alt="İletişim" class="iletisim-foto gizle">
@@ -89,26 +91,47 @@
 
     <script>
         const okButonu = document.getElementById("dinamik-ok");
+        const form = document.getElementById("my-form");
+        const status = document.getElementById("form-status");
 
 
         window.addEventListener("scroll", () => {
             window.scrollY > 300 ? okButonu.classList.add("goster") : okButonu.classList.remove("goster");
         });
 
-
         okButonu.addEventListener("click", (e) => {
             e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
+            window.scrollTo({ top: 0, behavior: "smooth" });
         });
 
 
-        const observerOptions = {
-            threshold: 0.2
-        };
+        async function handleSubmit(event) {
+            event.preventDefault();
+            const data = new FormData(event.target);
 
+            fetch(event.target.action, {
+                method: form.method,
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    status.innerHTML = "Teşekkürler! Mesajınız başarıyla iletildi.";
+                    status.style.display = "block";
+                    form.reset();
+                    setTimeout(() => { status.style.display = "none"; }, 5000);
+                } else {
+                    status.innerHTML = "Hata! Mesaj gönderilemedi.";
+                    status.style.display = "block";
+                }
+            }).catch(error => {
+                status.innerHTML = "Bir sorun oluştu, lütfen tekrar deneyin.";
+                status.style.display = "block";
+            });
+        }
+        form.addEventListener("submit", handleSubmit);
+
+
+        const observerOptions = { threshold: 0.2 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 const img = entry.target.querySelector('img');
@@ -118,7 +141,6 @@
                     if (img) img.classList.remove("gizle");
                     if (text) text.classList.remove("sola-kaybol");
                 } else {
-
                     if (img) img.classList.add("gizle");
                     if (text) text.classList.add("sola-kaybol");
                 }
