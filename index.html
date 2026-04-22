@@ -38,7 +38,7 @@
             <div class="hakkimda-yazi sola-kaybol">
                 <h2>HAKKIMDA</h2>
                 <p>Kahramanmaraş İstiklal Üniversitesi Yazılım Mühendisliği öğrencisiyim. Frontend ve Backend alanlarına
-                    ilgi duyuyorum. Kendimi bu alanlarda geliştirmeye çalışıyorum.</p>
+                    ilgi duyuyorum.</p>
             </div>
             <img src="img/img2.png" alt="Hakkımda" class="hakkimda-foto gizle">
         </div>
@@ -48,13 +48,8 @@
         <div class="projelerim-icerik">
             <div class="projelerim-yazi sola-kaybol">
                 <h2>PROJELERİM</h2>
-                <p>Geliştirdiğim ilk kapsamlı projem:</p>
-                <p>
-                    Modern web standartlarına uygun olarak
-                    <a href="https://www.bemastreyler.com.tr/" target="_blank" class="proje-link">Bemas Treyler</a>
-                    firması için kullanıcı dostu bir web sitesi geliştirdim.
-                </p>
-                <p>Diğer küçük projelerime GitHub ve LinkedIn hesaplarımdan ulaşabilirsiniz.</p>
+                <p>Modern web standartlarına uygun olarak <a href="https://www.bemastreyler.com.tr/" target="_blank"
+                        class="proje-link">Bemas Treyler</a> firması için web sitesi geliştirdim.</p>
             </div>
             <img src="img/img3.png" alt="Projeler" class="projelerim-foto gizle">
         </div>
@@ -64,20 +59,17 @@
         <div class="iletisim-icerik">
             <div class="iletisim-yazi sola-kaybol">
                 <h2>İLETİŞİM</h2>
-                <p>Kendimi geliştirebilmem adına öneri ve tekliflerinize açığım.</p>
-
                 <form id="my-form" action="https://formspree.io/f/mbdqpang" method="POST" class="iletisim-form">
                     <div class="form-grup">
                         <input type="text" name="name" placeholder="Adınız" required>
                     </div>
                     <div class="form-grup">
-                        <input type="email" name="_replyto" placeholder="E-posta Adresiniz" required>
+                        <input type="email" name="_replyto" placeholder="E-posta" required>
                     </div>
                     <div class="form-grup">
-                        <textarea name="message" rows="5" placeholder="Mesajınız" required></textarea>
+                        <textarea name="message" rows="4" placeholder="Mesajınız" required></textarea>
                     </div>
-                    <button id="submit-btn" type="submit" class="gonder-btn">Gönder</button>
-
+                    <button type="submit" class="gonder-btn">Gönder</button>
                     <p id="form-status" style="display:none; margin-top:15px; color:#ffcc00; font-weight:bold;"></p>
                 </form>
             </div>
@@ -85,15 +77,12 @@
         </div>
     </section>
 
-    <a href="#giris" id="dinamik-ok" class="yukari-ok">
-        <i class="fas fa-arrow-up"></i>
-    </a>
+    <a href="#giris" id="dinamik-ok" class="yukari-ok"><i class="fas fa-arrow-up"></i></a>
 
     <script>
         const okButonu = document.getElementById("dinamik-ok");
         const form = document.getElementById("my-form");
         const status = document.getElementById("form-status");
-
 
         window.addEventListener("scroll", () => {
             window.scrollY > 300 ? okButonu.classList.add("goster") : okButonu.classList.remove("goster");
@@ -104,48 +93,43 @@
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
 
-
         async function handleSubmit(event) {
             event.preventDefault();
             const data = new FormData(event.target);
-
             fetch(event.target.action, {
                 method: form.method,
                 body: data,
                 headers: { 'Accept': 'application/json' }
             }).then(response => {
                 if (response.ok) {
-                    status.innerHTML = "Teşekkürler! Mesajınız başarıyla iletildi.";
+                    status.innerHTML = "Mesajınız iletildi!";
                     status.style.display = "block";
                     form.reset();
                     setTimeout(() => { status.style.display = "none"; }, 5000);
                 } else {
-                    status.innerHTML = "Hata! Mesaj gönderilemedi.";
+                    status.innerHTML = "Hata oluştu.";
                     status.style.display = "block";
                 }
-            }).catch(error => {
-                status.innerHTML = "Bir sorun oluştu, lütfen tekrar deneyin.";
+            }).catch(() => {
+                status.innerHTML = "Bağlantı hatası.";
                 status.style.display = "block";
             });
         }
         form.addEventListener("submit", handleSubmit);
 
-
-        const observerOptions = { threshold: 0.2 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 const img = entry.target.querySelector('img');
                 const text = entry.target.querySelector('div[class*="-yazi"]');
-
                 if (entry.isIntersecting) {
-                    if (img) img.classList.remove("gizle");
-                    if (text) text.classList.remove("sola-kaybol");
+                    img?.classList.remove("gizle");
+                    text?.classList.remove("sola-kaybol");
                 } else {
-                    if (img) img.classList.add("gizle");
-                    if (text) text.classList.add("sola-kaybol");
+                    img?.classList.add("gizle");
+                    text?.classList.add("sola-kaybol");
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
         document.querySelectorAll('section').forEach(section => observer.observe(section));
     </script>
