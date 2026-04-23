@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -10,49 +10,44 @@
 </head>
 
 <body>
-
     <nav class="baloncuk-menu">
         <a href="#giris">Ana Sayfa</a>
-        <a href="#hakkimda">Hakkımda</a>
+        <a href="#hakkimda">Hakkimda</a>
         <a href="#projelerim">Projelerim</a>
-        <a href="#iletisim">İletişim</a>
+        <a href="#iletisim">Iletisim</a>
     </nav>
-
     <div class="sosyal-medya">
         <a href="https://www.linkedin.com/in/ece-nur-ari-907638343/" target="_blank"><i class="fab fa-linkedin"></i>
             LinkedIn</a>
         <a href="https://github.com/ece00nur" target="_blank"><i class="fab fa-github"></i> GitHub</a>
     </div>
-
     <section id="giris">
         <div class="giris-icerik">
             <div class="giris-yazi sola-kaybol">
                 <h1>MERHABA,<br>BEN <span style="color: #ffcc00;">ECE NUR</span></h1>
             </div>
-            <img src="img/img1.png" alt="Profil Fotoğrafı" class="profil-foto gizle">
+            <img src="img/img1.png" alt="Profil Fotografi" class="profil-foto gizle">
         </div>
     </section>
-
     <section id="hakkimda">
         <div class="hakkimda-icerik">
             <div class="hakkimda-yazi sola-kaybol">
                 <h2>HAKKIMDA</h2>
-                <p>Kahramanmaraş İstiklal Üniversitesi Yazılım Mühendisliği öğrencisiyim. Frontend ve Backend alanlarına
-                    ilgi duyuyorum. Kendimi bu alanlarda geliştirmeye çalışıyorum.</p>
+                <p>Kahramanmaras Istiklal Universitesi Yazilim Muhendisligi ogrencisiyim. Frontend ve Backend alanlarina
+                    ilgi duyuyorum. Kendimi bu alanlarda gelistirmeye calisiyorum.</p>
             </div>
-            <img src="img/img2.png" alt="Hakkımda" class="hakkimda-foto gizle">
+            <img src="img/img2.png" alt="Hakkimda" class="hakkimda-foto gizle">
         </div>
     </section>
-
     <section id="projelerim">
         <div class="projelerim-icerik">
             <div class="projelerim-yazi sola-kaybol">
-                <h2>PROJELERİM</h2>
-                <p>Geliştirdiğim ilk kapsamlı projem:</p>
-                <p>Modern web standartlarına uygun olarak <a href="https://www.bemastreyler.com.tr/" target="_blank"
-                        class="proje-link">Bemas Treyler</a> firması için kullanıcı dostu bir web sitesi geliştirdim.
+                <h2>PROJELERIM</h2>
+                <p>Gelistirdigim ilk kapsamli projem:</p>
+                <p>Modern web standartlarina uygun olarak <a href="https://www.bemastreyler.com.tr/" target="_blank"
+                        class="proje-link">Bemas Treyler</a> firmasi icin kullanici dostu bir web sitesi gelistirdim.
                 </p>
-                <p>Diğer küçük projelerime GitHub üzerinden bakabilirsiniz.</p>
+                <p>Diger kucuk projelerime GitHub uzerinden bakabilirsiniz.</p>
                 <div class="mobil-sosyal-projeler">
                     <a href="https://www.linkedin.com/in/ece-nur-ari-907638343/" target="_blank"><i
                             class="fab fa-linkedin"></i> LinkedIn</a>
@@ -62,32 +57,29 @@
             <img src="img/img3.png" alt="Projeler" class="projelerim-foto gizle">
         </div>
     </section>
-
     <section id="iletisim">
         <div class="iletisim-icerik">
             <div class="iletisim-yazi sola-kaybol">
-                <h2>İLETİŞİM</h2>
-                <p>Kendimi geliştirebilmem adına öneri ve görüşlerinizi benimle paylaşmaktan çekinmeyin.</p>
-                <form id="my-form" action="https://formspree.io/f/xpqkkdlr" method="POST" class="iletisim-form">
+                <h2>ILETISIM</h2>
+                <p>Kendimi gelistirebilmem adina oneri ve goruslerinizi benimle paylasmaktan cekinmeyin.</p>
+                <form id="my-form" action="https://formspree.io/f/meevvgne" method="POST" class="iletisim-form">
                     <div class="form-grup">
-                        <input type="text" name="name" placeholder="Adınız" required>
+                        <input type="text" name="name" placeholder="Adiniz" required>
                     </div>
                     <div class="form-grup">
-                        <input type="email" name="_replyto" placeholder="E-posta Adresiniz" required>
+                        <input type="email" name="email" placeholder="E-posta Adresiniz" required>
                     </div>
                     <div class="form-grup">
-                        <textarea name="message" rows="5" placeholder="Mesajınız" required></textarea>
+                        <textarea name="message" rows="5" placeholder="Mesajiniz" required></textarea>
                     </div>
-                    <button type="submit" class="gonder-btn">Gönder</button>
+                    <button type="submit" class="gonder-btn">Gonder</button>
                     <p id="form-status" style="display:none; margin-top:15px; color:#ffcc00; font-weight:bold;"></p>
                 </form>
             </div>
-            <img src="img/img4.png" alt="İletişim" class="iletisim-foto gizle">
+            <img src="img/img4.png" alt="Iletisim" class="iletisim-foto gizle">
         </div>
     </section>
-
     <a href="#giris" id="dinamik-ok" class="yukari-ok"><i class="fas fa-arrow-up"></i></a>
-
     <script>
         const okButonu = document.getElementById("dinamik-ok");
         const form = document.getElementById("my-form");
@@ -97,16 +89,14 @@
 
         window.addEventListener("scroll", () => {
             window.scrollY > 300 ? okButonu.classList.add("goster") : okButonu.classList.remove("goster");
-
             let mevcut = "";
             sayfalar.forEach(sayfa => {
                 const sayfaUst = sayfa.offsetTop;
                 const sayfaBoyu = sayfa.clientHeight;
-                if (pageYOffset >= (sayfaUst - sayfaBoyu / 3)) {
+                if (window.pageYOffset >= (sayfaUst - sayfaBoyu / 3)) {
                     mevcut = sayfa.getAttribute('id');
                 }
             });
-
             menuLinkleri.forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href').includes(mevcut)) {
@@ -124,21 +114,21 @@
             event.preventDefault();
             const data = new FormData(event.target);
             fetch(event.target.action, {
-                method: form.method,
+                method: 'POST',
                 body: data,
                 headers: { 'Accept': 'application/json' }
             }).then(response => {
                 if (response.ok) {
-                    status.innerHTML = "Teşekkürler! Mesajınız iletildi.";
+                    status.innerHTML = "Tesekkurler! Mesajiniz iletildi.";
                     status.style.display = "block";
-                    form.reset();
+                    event.target.reset();
                     setTimeout(() => { status.style.display = "none"; }, 5000);
                 } else {
                     status.innerHTML = "Hata!";
                     status.style.display = "block";
                 }
             }).catch(() => {
-                status.innerHTML = "Bağlantı hatası.";
+                status.innerHTML = "Baglanti hatasi.";
                 status.style.display = "block";
             });
         }
@@ -157,8 +147,7 @@
                 }
             });
         }, { threshold: 0.1 });
-
-        document.querySelectorAll('section').forEach(section => observer.observe(section));
+        sayfalar.forEach(section => observer.observe(section));
     </script>
 </body>
 
