@@ -38,7 +38,7 @@
             <div class="hakkimda-yazi sola-kaybol">
                 <h2>HAKKIMDA</h2>
                 <p>Kahramanmaraş İstiklal Üniversitesi Yazılım Mühendisliği öğrencisiyim. Frontend ve Backend alanlarına
-                    ilgi duyuyorum.</p>
+                    ilgi duyuyorum. Kendimi bu alanlarda geliştirmeye çalışıyorum.</p>
             </div>
             <img src="img/img2.png" alt="Hakkımda" class="hakkimda-foto gizle">
         </div>
@@ -48,10 +48,12 @@
         <div class="projelerim-icerik">
             <div class="projelerim-yazi sola-kaybol">
                 <h2>PROJELERİM</h2>
+                <p>Geliştirdiğim ilk kapsamlı projem:</p>
                 <p>Modern web standartlarına uygun olarak <a href="https://www.bemastreyler.com.tr/" target="_blank"
-                        class="proje-link">Bemas Treyler</a> firması için web sitesi geliştirdim.</p>
+                        class="proje-link">Bemas Treyler</a> firması için kullanıcı dostu bir web sitesi geliştirdim.
+                </p>
 
-                <div class="mobil-sosyal">
+                <div class="mobil-sosyal-projeler">
                     <a href="https://www.linkedin.com/in/ece-nur-ari-907638343/" target="_blank"><i
                             class="fab fa-linkedin"></i> LinkedIn</a>
                     <a href="https://github.com/ece00nur" target="_blank"><i class="fab fa-github"></i> GitHub</a>
@@ -70,10 +72,10 @@
                         <input type="text" name="name" placeholder="Adınız" required>
                     </div>
                     <div class="form-grup">
-                        <input type="email" name="_replyto" placeholder="E-posta" required>
+                        <input type="email" name="_replyto" placeholder="E-posta Adresiniz" required>
                     </div>
                     <div class="form-grup">
-                        <textarea name="message" rows="4" placeholder="Mesajınız" required></textarea>
+                        <textarea name="message" rows="5" placeholder="Mesajınız" required></textarea>
                     </div>
                     <button type="submit" class="gonder-btn">Gönder</button>
                     <p id="form-status" style="display:none; margin-top:15px; color:#ffcc00; font-weight:bold;"></p>
@@ -89,9 +91,27 @@
         const okButonu = document.getElementById("dinamik-ok");
         const form = document.getElementById("my-form");
         const status = document.getElementById("form-status");
+        const menuLinkleri = document.querySelectorAll('.baloncuk-menu a');
+        const sayfalar = document.querySelectorAll('section');
 
         window.addEventListener("scroll", () => {
             window.scrollY > 300 ? okButonu.classList.add("goster") : okButonu.classList.remove("goster");
+
+            let mevcut = "";
+            sayfalar.forEach(sayfa => {
+                const sayfaUst = sayfa.offsetTop;
+                const sayfaBoyu = sayfa.clientHeight;
+                if (pageYOffset >= (sayfaUst - sayfaBoyu / 3)) {
+                    mevcut = sayfa.getAttribute('id');
+                }
+            });
+
+            menuLinkleri.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(mevcut)) {
+                    link.classList.add('active');
+                }
+            });
         });
 
         okButonu.addEventListener("click", (e) => {
@@ -108,12 +128,12 @@
                 headers: { 'Accept': 'application/json' }
             }).then(response => {
                 if (response.ok) {
-                    status.innerHTML = "Mesajınız iletildi!";
+                    status.innerHTML = "Teşekkürler! Mesajınız iletildi.";
                     status.style.display = "block";
                     form.reset();
                     setTimeout(() => { status.style.display = "none"; }, 5000);
                 } else {
-                    status.innerHTML = "Hata oluştu.";
+                    status.innerHTML = "Hata!";
                     status.style.display = "block";
                 }
             }).catch(() => {
