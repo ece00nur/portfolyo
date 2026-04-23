@@ -47,18 +47,19 @@ section {
 
 .sosyal-medya {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
+    top: 30px;
+    /* Bilgisayarda sağ üst konum */
+    right: 40px;
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 1000;
+    gap: 20px;
+    z-index: 1001;
 }
 
 .sosyal-medya a {
     color: white;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .mobil-sosyal {
